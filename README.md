@@ -2,9 +2,23 @@
 
 A simple Flask-based HTTP pony to lookup Unicode character names for a string.
 
+## Install
+
+	python ./setup.py install
+
 ## Example
 
 	/usr/local/bin/ucd-server.py -c ucd-server.cfg
+
+## Endpoints
+
+### GET /ping 
+
+	curl -X GET 'http://localhost:5000/ping'
+
+	{
+		"stat": "ok"
+	}
 
 ### GET /?string=<STRING>
 	
