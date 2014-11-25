@@ -12,7 +12,7 @@ A simple Flask-based HTTP pony to lookup Unicode character names for a string.
 
 ## Endpoints
 
-### GET /ping 
+### GET  /ping 
 
 	curl -X GET 'http://localhost:5000/ping'
 
@@ -22,7 +22,7 @@ A simple Flask-based HTTP pony to lookup Unicode character names for a string.
 
 ### GET /?string=<STRING>
 	
-	curl 'http://localhost:5000/?string=hello☃'
+	curl -X GET 'http://localhost:5000/?string=hello☃'
 
 	{
 	  "chars": [
