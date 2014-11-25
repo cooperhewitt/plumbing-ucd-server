@@ -3,7 +3,7 @@
 from setuptools import setup
 
 setup(name='plumbing-ucd-server',
-      version='0.1',
+      version='0.11',
       description='A Flask based HTTP pony for ',
       author='Cooper Hewitt Smithsonian Design Museum',
       url='https://github.com/cooperhewitt/plumbing-ucd-server',
@@ -21,5 +21,5 @@ setup(name='plumbing-ucd-server',
       scripts=[
           'scripts/ucd-server.py',
       ],
-      download_url='https://github.com/cooperhewitt/plumbing-ucd-server/tarball/master#egg=plumbing-ucd-server-0.1',
+      download_url='https://github.com/cooperhewitt/plumbing-ucd-server/tarball/master#egg=plumbing-ucd-server-0.11',
       license='BSD')

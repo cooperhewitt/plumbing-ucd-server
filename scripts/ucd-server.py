@@ -20,7 +20,12 @@ def ping():
 @cross_origin(methods=['GET'])
 def lookup():
 
-    input = flask.request.get('string')
+    input = flask.request.args.get('string', None)
+
+    if not input:
+        logging.error("Missing input")
+        flask.abort(400)
+
     input = input.decode('utf-8')
     
     ref = names.lookup()
