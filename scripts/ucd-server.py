@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+# -*- coding: utf-8 -*-
+
 import flask
 from flask_cors import cross_origin 
 
@@ -16,11 +18,20 @@ def ping():
 
     return flask.jsonify({'stat': 'ok'})
 
-@app.route('/', methods=['GET'])
-@cross_origin(methods=['GET'])
+@app.route('/', methods=['GET', 'POST'])
+@cross_origin(methods=['GET', 'POST'])
 def lookup():
 
-    input = flask.request.args.get('string', None)
+    try:
+
+        if flask.request.method == 'POST':
+            input = flask.request.form['string']
+        else:
+            input = flask.request.args.get('string', None)
+
+    except Exception, e:
+        logging.error("failed to get input because %s" % e)
+        flask.abort(400)
 
     if not input:
         logging.error("Missing input")
