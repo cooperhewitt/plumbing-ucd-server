@@ -8,7 +8,7 @@ import logging
 import cooperhewitt.unicode.names as names
 import cooperhewitt.flask.http_pony as http_pony
 
-app = http_pony.setup_flask_app('ATKINSON_SERVER')
+app = http_pony.setup_flask_app('UCD_SERVER')
 
 @app.route('/ping', methods=['GET'])
 @cross_origin(methods=['GET'])
