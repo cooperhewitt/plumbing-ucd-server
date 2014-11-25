@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(name='plumbing-ucd-server',
       version='0.11',
-      description='A Flask based HTTP pony for ',
+      description='A simple Flask-based HTTP pony to lookup Unicode character names for a string.',
       author='Cooper Hewitt Smithsonian Design Museum',
       url='https://github.com/cooperhewitt/plumbing-ucd-server',
       requires=[
