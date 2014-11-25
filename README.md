@@ -1,30 +1,84 @@
 # plumbing-ucd-server
 
-This doesn't work yet because codecs and Flask...
+A simple Flask-based HTTP pony to lookup Unicode character names for a string.
 
-	74 ->/usr/local/bin/ucd-server.py -c ucd-server.cfg
-	INFO:werkzeug: * Running on http://127.0.0.1:5000/
+## Example
 
-	curl -X POST -F 'string=hello☃' http://localhost:5000/
+	/usr/local/bin/ucd-server.py -c ucd-server.cfg
 
-	ERROR:UCD_SERVER:Exception on / [POST]
-	Traceback (most recent call last):
-	  File "/usr/local/lib/python2.7/dist-packages/Flask-0.10.1-py2.7.egg/flask/app.py", line 1817, in wsgi_app
-	    response = self.full_dispatch_request()
-	  File "/usr/local/lib/python2.7/dist-packages/Flask-0.10.1-py2.7.egg/flask/app.py", line 1477, in full_dispatch_request
-	    rv = self.handle_user_exception(e)
-	  File "/usr/local/lib/python2.7/dist-packages/Flask-0.10.1-py2.7.egg/flask/app.py", line 1381, in handle_user_exception
-	    reraise(exc_type, exc_value, tb)
-	  File "/usr/local/lib/python2.7/dist-packages/Flask-0.10.1-py2.7.egg/flask/app.py", line 1475, in full_dispatch_request
-	    rv = self.dispatch_request()
-	  File "/usr/local/lib/python2.7/dist-packages/Flask-0.10.1-py2.7.egg/flask/app.py", line 1461, in dispatch_request
-	    return self.view_functions[rule.endpoint](**req.view_args)
-	  File "/usr/local/lib/python2.7/dist-packages/plumbing_ucd_server-0.11-py2.7.egg/EGG-INFO/scripts/ucd-server.py", line 40, in lookup
-	  File "/usr/lib/python2.7/encodings/utf_8.py", line 16, in decode
-	    return codecs.utf_8_decode(input, errors, True)
-	UnicodeEncodeError: 'ascii' codec can't encode character u'\u2603' in position 5: ordinal not in range(128)
-	INFO:werkzeug:127.0.0.1 - - [25/Nov/2014 16:00:20] "POST / HTTP/1.1" 500 -
+### GET /?string=<STRING>
+	
+	curl 'http://localhost:5000/?string=hello☃'
 
+	{
+	  "chars": [
+	    [
+	      "h", 
+	      "LATIN SMALL LETTER H"
+	    ], 
+	    [
+	      "e", 
+	      "LATIN SMALL LETTER E"
+	    ], 
+	    [
+	      "l", 
+	      "LATIN SMALL LETTER L"
+	    ], 
+	    [
+	      "l", 
+	      "LATIN SMALL LETTER L"
+	    ], 
+	    [
+	      "o", 
+	      "LATIN SMALL LETTER O"
+	    ], 
+	    [
+	      "\u2603", 
+	      "SNOWMAN"
+	    ]
+	  ], 
+	  "stat": "ok"
+	}
+
+### POST /
+
+	curl -X POST -F 'string=⚓anchor' http://localhost:5000
+
+	{
+	  "chars": [
+	    [
+	      "\u2693", 
+	      "ANCHOR"
+	    ], 
+	    [
+	      "a", 
+	      "LATIN SMALL LETTER A"
+	    ], 
+	    [
+	      "n", 
+	      "LATIN SMALL LETTER N"
+	    ], 
+	    [
+	      "c", 
+	      "LATIN SMALL LETTER C"
+	    ], 
+	    [
+	      "h", 
+	      "LATIN SMALL LETTER H"
+	    ], 
+	    [
+	      "o", 
+	      "LATIN SMALL LETTER O"
+	    ], 
+	    [
+	      "r", 
+	      "LATIN SMALL LETTER R"
+	    ]
+	  ], 
+	  "stat": "ok"
+	}
+    	
 ## See also
 
 * https://github.com/cooperhewitt/py-cooperhewitt-unicode
+* https://github.com/cooperhewitt/py-cooperhewitt-flask

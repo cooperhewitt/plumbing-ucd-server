@@ -36,8 +36,6 @@ def lookup():
     if not input:
         logging.error("Missing input")
         flask.abort(400)
-
-    input = input.decode('utf-8')
     
     ref = names.lookup()
     chars = []
