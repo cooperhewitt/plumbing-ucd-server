@@ -114,5 +114,6 @@ We don't actually need anything exported in this section but I think you'll need
 
 ## See also
 
+* https://github.com/cooperhewitt/go-ucd
 * https://github.com/cooperhewitt/py-cooperhewitt-unicode
 * https://github.com/cooperhewitt/py-cooperhewitt-flask
